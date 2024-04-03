@@ -39,3 +39,20 @@ jobs:
         run: | 
           echo "Hello ${{ github.event.inputs.name }}" # Outputs the input parameter, by accessing the github context object
 #          echo "python ver ${{ matrix.python }}"  
+      - name: Make a cURL request to BigPanda      
+        run: |
+         # Request body
+         message={\
+          "action_id": 1003373,\
+          "manager": "dev-global-vertex-oncall",\
+          "host": "GitHub",\
+          "type": "${{ inputs.os-cloud }} - ${{ inputs.environment }} GitHub Worflow Error",\
+          "severity": 5,\
+          "description": "GitHub Workflow failed on ${{ inputs.os-cloud }} - ${{ inputs.environment }}"\
+         }\
+         # Make a POST request with the data
+         response=$(curl -X POST \
+          -H 'Content-Type: application/json' \
+          -d '$message' \
+          https://public.moog.godaddy.com:48080)
+          echo "Response from BigPanda: $response"
