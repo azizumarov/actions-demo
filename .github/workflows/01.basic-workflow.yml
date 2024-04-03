@@ -41,19 +41,9 @@ jobs:
 #          echo "python ver ${{ matrix.python }}"  
       - name: Make a cURL request to BigPanda      
         run: |
-         # Request body
-         message=|
-         {
-          "action_id": 1003373,
-          "manager": "dev-global-vertex-oncall",
-          "host": "GitHub",
-          "type": "test 1 GitHub Worflow Error",
-          "severity": 5,
-          "description": "GitHub Workflow failed on test"
-         }
          # Make a POST request with the data
          response=$(curl -X POST \
           -H 'Content-Type: application/json' \
-          -d '$message' \
+          -d '{ "action_id": 1003373, "manager": "dev-global-vertex-oncall", "host": "GitHub", "type": "test 1 GitHub Worflow Error", "severity": 5, "description": "GitHub Workflow failed on test" }' \
           https://public.moog.godaddy.com:48080)
           echo "Response from BigPanda: $response"
