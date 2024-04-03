@@ -46,9 +46,9 @@ jobs:
           "action_id": 1003373,\
           "manager": "dev-global-vertex-oncall",\
           "host": "GitHub",\
-          "type": "${{ inputs.os-cloud }} - ${{ inputs.environment }} GitHub Worflow Error",\
+          "type": "test 1 GitHub Worflow Error",\
           "severity": 5,\
-          "description": "GitHub Workflow failed on ${{ inputs.os-cloud }} - ${{ inputs.environment }}"\
+          "description": "GitHub Workflow failed on test"\
          }\
          # Make a POST request with the data
          response=$(curl -X POST \
